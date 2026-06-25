@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE nmaprun>
+<nmaprun scanner="nmap" args="-sS -sV -oX -" start="1710000000" startstr="Sat Mar 09 12:00:00 2024" version="7.94" xmloutputversion="1.05">
+  <scaninfo type="syn" protocol="tcp" numservices="3" services="22,80,443"/>
+  <verbose level="0"/>
+  <debugging level="0"/>
+  <host>
+    <status state="up" reason="syn-ack" reason_ttl="64"/>
+    <address addr="192.168.1.1" addrtype="ipv4"/>
+    <hostnames>
+      <hostname name="router.local" type="user"/>
+    </hostnames>
+    <ports>
+      <port protocol="tcp" portid="22">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="ssh" product="OpenSSH" version="9.3" ostype="Linux" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="80">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="http" product="nginx" version="1.24.0" tunnel="" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="443">
+        <state state="open" reason="syn-ack" reason_ttl="64"/>
+        <service name="https" product="nginx" version="1.24.0" tunnel="ssl" method="probed" conf="10"/>
+      </port>
+      <port protocol="tcp" portid="53">
+        <state state="closed" reason="reset" reason_ttl="64"/>
+        <service name="domain" method="table" conf="3"/>
+      </port>
+    </ports>
+  </host>
+</nmaprun>

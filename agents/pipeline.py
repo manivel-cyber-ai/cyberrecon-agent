@@ -28,11 +28,13 @@ class CyberReconPipeline:
         record_scan_audit(sanitized_request.target_ip, "pipeline.run", scan_type=sanitized_request.scan_type, status="requested")
 
         if demo_mode:
-            scan_data = execute_scan(
+            from tools.nmap_tools import parse_nmap_xml
+            xml_output = execute_scan(
                 target_ip=sanitized_request.target_ip,
                 scan_type=sanitized_request.scan_type,
                 demo_mode=True,
             )
+            scan_data = parse_nmap_xml(xml_output)
         else:
             scan_data = self.recon_agent.run(
                 target_ip=sanitized_request.target_ip,
